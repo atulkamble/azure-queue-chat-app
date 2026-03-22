@@ -51,14 +51,7 @@ export class CosmosService {
       _partitionKey: message.userId,
     };
 
-    const { resource, diagnostics } = await container.items.create(item, {
-      partitionKey: message.userId,
-    });
-
-    // Log diagnostics if latency is high
-    if (diagnostics && parseFloat(diagnostics.requestLatency) > 100) {
-      console.warn('High latency detected:', diagnostics);
-    }
+    const { resource } = await container.items.create(item);
 
     return resource as ChatMessage;
   }
@@ -76,14 +69,7 @@ export class CosmosService {
       _partitionKey: message.userId,
     };
 
-    const { resource, diagnostics } = await container.items.upsert(item, {
-      partitionKey: message.userId,
-    });
-
-    // Log diagnostics if latency is high
-    if (diagnostics && parseFloat(diagnostics.requestLatency) > 100) {
-      console.warn('High latency detected:', diagnostics);
-    }
+    const { resource } = await container.items.upsert(item);
 
     return resource as ChatMessage;
   }
@@ -108,16 +94,11 @@ export class CosmosService {
       ],
     };
 
-    const { resources, diagnostics } = await container.items
+    const { resources } = await container.items
       .query<ChatMessage>(querySpec, {
         partitionKey: userId,
       })
       .fetchAll();
-
-    // Log diagnostics for monitoring
-    if (diagnostics && parseFloat(diagnostics.requestLatency) > 100) {
-      console.warn('High latency detected:', diagnostics);
-    }
 
     return resources;
   }

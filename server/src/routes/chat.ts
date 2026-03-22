@@ -108,6 +108,7 @@ router.post('/queue/process', async (req: Request, res: Response) => {
     const results = await Promise.all(
       messages.map((msg) =>
         cosmosService.upsertMessage({
+          id: `${msg.timestamp}-${Math.random().toString(36).substring(2, 15)}`,
           ...msg,
         })
       )

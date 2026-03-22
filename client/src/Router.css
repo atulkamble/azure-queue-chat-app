@@ -1,0 +1,84 @@
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.main-nav {
+  background: linear-gradient(135deg, #0078d4 0%, #005a9e 100%);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.app-title {
+  margin: 0;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-links button {
+  padding: 10px 24px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.nav-links button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.nav-links button.active {
+  background: white;
+  color: #0078d4;
+  border-color: white;
+}
+
+.main-content {
+  flex: 1;
+  overflow: auto;
+  background: #f8f9fa;
+}
+
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .nav-links {
+    width: 100%;
+  }
+
+  .nav-links button {
+    flex: 1;
+  }
+
+  .app-title {
+    font-size: 1.2rem;
+  }
+}
